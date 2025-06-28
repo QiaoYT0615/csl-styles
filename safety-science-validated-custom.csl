@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0">
+  <info>
+    <title>Safety Science (Validated Custom Style)</title>
+    <id>http://www.zotero.org/styles/safety-science-validated-custom</id>
+    <link href="http://www.zotero.org/styles/safety-science-validated-custom" rel="self"/>
+    <author>
+      <name>ChatGPT (OpenAI)</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="science"/>
+    <updated>2025-06-28T00:00:00+00:00</updated>
+    <summary>Validated CSL style for Safety Science with strict compliance for Mendeley and Zotero.</summary>
+    <language>en</language>
+  </info>
+
+  <macro name="author">
+    <names variable="author">
+      <name initialize-with="." name-as-sort-order="first"/>
+    </names>
+  </macro>
+
+  <macro name="issued">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="accessed">
+    <group>
+      <date variable="accessed" prefix=" (accessed " suffix=")">
+        <date-part name="day" suffix=" "/>
+        <date-part name="month" suffix=" "/>
+        <date-part name="year"/>
+      </date>
+    </group>
+  </macro>
+
+  <macro name="doi">
+    <text variable="DOI" prefix=" https://doi.org/"/>
+  </macro>
+
+  <macro name="url">
+    <text variable="URL" prefix=" " suffix=""/>
+  </macro>
+
+  <citation>
+    <layout delimiter=", " prefix="[" suffix="]">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="100" et-al-use-first="100" second-field-align="flush">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="] "/>
+      <text macro="author"/>
+      <text variable="title" prefix=", "/>
+
+      <!-- Journal article -->
+      <group delimiter=", ">
+        <text variable="container-title" form="short"/>
+        <text variable="volume"/>
+        <date variable="issued">
+          <date-part name="year" prefix="(" suffix=")"/>
+        </date>
+        <text variable="page"/>
+        <text variable="article-number"/>
+      </group>
+
+      <!-- Book -->
+      <group delimiter=", ">
+        <text variable="edition" suffix=" ed."/>
+        <text variable="publisher"/>
+        <text variable="publisher-place"/>
+        <text macro="issued"/>
+      </group>
+
+      <!-- Chapter in book -->
+      <group delimiter=", ">
+        <text macro="issued"/>
+        <text variable="container-title"/>
+        <text variable="publisher"/>
+        <text variable="publisher-place"/>
+        <text variable="page" prefix="pp. "/>
+      </group>
+
+      <!-- Dataset / Software -->
+      <group delimiter=", ">
+        <text variable="genre" prefix=" [" suffix="]"/>
+        <text variable="publisher"/>
+        <text macro="issued"/>
+      </group>
+
+      <!-- URL and DOI -->
+      <text macro="doi"/>
+      <text macro="url"/>
+      <text macro="accessed"/>
+    </layout>
+  </bibliography>
+</style>
