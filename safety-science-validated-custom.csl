@@ -1,100 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0">
   <info>
-    <title>Safety Science (Validated Custom Style)</title>
-    <id>http://www.zotero.org/styles/safety-science-validated-custom</id>
-    <link href="http://www.zotero.org/styles/safety-science-validated-custom" rel="self"/>
+    <title>Elsevier (Safety Science)</title>
+    <id>https://github.com/QiaoYT0615/csl-styles/blob/refs/heads/main/safety-science-validated-custom.csl</id>
+    <link href="https://www.sciencedirect.com/journal/safety-science" rel="documentation"/>
     <author>
-      <name>ChatGPT (OpenAI)</name>
+      <name>Custom CSL by ChatGPT</name>
     </author>
     <category citation-format="numeric"/>
-    <category field="science"/>
-    <updated>2025-06-28T00:00:00+00:00</updated>
-    <summary>Validated CSL style for Safety Science with strict compliance for Mendeley and Zotero.</summary>
-    <language>en</language>
+    <category field="engineering"/>
+    <updated>2025-06-28T08:00:00+00:00</updated>
+    <summary>CSL style for Elsevier's Safety Science journal</summary>
+    <link href="https://github.com/QiaoYT0615/csl-styles/blob/refs/heads/main/safety-science-validated-custom.csl" rel="self"/>
   </info>
 
-  <macro name="author">
-    <names variable="author">
-      <name initialize-with="." name-as-sort-order="first"/>
-    </names>
-  </macro>
-
-  <macro name="issued">
-    <date variable="issued">
-      <date-part name="year"/>
-    </date>
-  </macro>
-
-  <macro name="accessed">
-    <group>
-      <date variable="accessed" prefix=" (accessed " suffix=")">
-        <date-part name="day" suffix=" "/>
-        <date-part name="month" suffix=" "/>
-        <date-part name="year"/>
-      </date>
-    </group>
-  </macro>
-
-  <macro name="doi">
-    <text variable="DOI" prefix=" https://doi.org/"/>
-  </macro>
-
-  <macro name="url">
-    <text variable="URL" prefix=" " suffix=""/>
-  </macro>
-
-  <citation>
-    <layout delimiter=", " prefix="[" suffix="]">
+  <citation collapse="citation-number" disambiguate-add-year-suffix="true" cite-group-delimiter=", " delimiter=", ">
+    <layout prefix="[" suffix="]" delimiter=", ">
       <text variable="citation-number"/>
     </layout>
   </citation>
 
-  <bibliography et-al-min="100" et-al-use-first="100" second-field-align="flush">
-    <layout suffix=".">
-      <text variable="citation-number" prefix="[" suffix="] "/>
-      <text macro="author"/>
-      <text variable="title" prefix=", "/>
-
-      <!-- Journal article -->
+  <bibliography et-al-min="7" et-al-use-first="6" second-field-align="flush">
+    <layout>
+      <text prefix="[" variable="citation-number" suffix="] "/>
       <group delimiter=", ">
-        <text variable="container-title" form="short"/>
-        <text variable="volume"/>
+        <names variable="author">
+          <name and="text" initialize-with="." delimiter=", "/>
+        </names>
         <date variable="issued">
-          <date-part name="year" prefix="(" suffix=")"/>
+          <date-part name="year"/>
         </date>
-        <text variable="page"/>
-        <text variable="article-number"/>
+        <text variable="title"/>
+        <choose>
+          <if type="article-journal">
+            <text variable="container-title" form="short"/>
+            <text variable="volume"/>
+            <text variable="page" prefix=" " />
+          </if>
+          <else-if type="book">
+            <text variable="publisher"/>
+            <text variable="publisher-place"/>
+          </else-if>
+          <else-if type="chapter">
+            <group prefix="in: " delimiter=", ">
+              <text variable="container-title"/>
+              <names variable="editor">
+                <name and="text" initialize-with="." delimiter=", "/>
+              </names>
+              <text variable="publisher"/>
+              <text variable="publisher-place"/>
+              <text variable="page" prefix="pp. "/>
+            </group>
+          </else-if>
+          <else-if type="webpage">
+            <text variable="URL"/>
+            <date variable="accessed" prefix=", accessed ">
+              <date-part name="day"/>
+              <date-part name="month"/>
+              <date-part name="year"/>
+            </date>
+          </else-if>
+          <else-if type="software dataset">
+            <text variable="container-title"/>
+            <text variable="version" prefix="v"/>
+          </else-if>
+        </choose>
+        <text variable="DOI" prefix=", https://doi.org/"/>
       </group>
-
-      <!-- Book -->
-      <group delimiter=", ">
-        <text variable="edition" suffix=" ed."/>
-        <text variable="publisher"/>
-        <text variable="publisher-place"/>
-        <text macro="issued"/>
-      </group>
-
-      <!-- Chapter in book -->
-      <group delimiter=", ">
-        <text macro="issued"/>
-        <text variable="container-title"/>
-        <text variable="publisher"/>
-        <text variable="publisher-place"/>
-        <text variable="page" prefix="pp. "/>
-      </group>
-
-      <!-- Dataset / Software -->
-      <group delimiter=", ">
-        <text variable="genre" prefix=" [" suffix="]"/>
-        <text variable="publisher"/>
-        <text macro="issued"/>
-      </group>
-
-      <!-- URL and DOI -->
-      <text macro="doi"/>
-      <text macro="url"/>
-      <text macro="accessed"/>
     </layout>
   </bibliography>
 </style>
