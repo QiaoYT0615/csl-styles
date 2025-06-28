@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0">
+  <info>
+    <title>Safety Science (Complete Custom Style)</title>
+    <id>http://www.zotero.org/styles/safety-science-complete-custom</id>
+    <link href="http://www.zotero.org/styles/safety-science-complete-custom" rel="self"/>
+    <author>
+      <name>ChatGPT (OpenAI)</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="science"/>
+    <updated>2025-06-28T00:00:00+00:00</updated>
+    <summary>CSL style customized for Safety Science journal, supporting all major reference types including datasets, software, websites, and article numbers.</summary>
+    <language>en</language>
+  </info>
+
+  <citation>
+    <layout delimiter=", " prefix="[" suffix="]">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="100" et-al-use-first="100" second-field-align="flush">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="] "/>
+      <names variable="author">
+        <name initialize-with="." name-as-sort-order="first"/>
+      </names>
+      <text variable="title" prefix=", "/>
+
+      <!-- Journal article -->
+      <group delimiter=", ">
+        <text variable="container-title" form="short"/>
+        <group delimiter=" ">
+          <text variable="volume"/>
+          <date variable="issued">
+            <date-part name="year" prefix="(" suffix=")"/>
+          </date>
+        </group>
+        <text variable="page"/>
+        <text variable="article-number"/>
+      </group>
+
+      <!-- Book -->
+      <group delimiter=", ">
+        <text variable="edition" suffix=" ed."/>
+        <text variable="publisher"/>
+        <text variable="publisher-place"/>
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </group>
+
+      <!-- Chapter in book -->
+      <group delimiter=", ">
+        <text macro="editor"/>
+        <text variable="collection-title"/>
+        <text variable="publisher"/>
+        <text variable="publisher-place"/>
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+        <text variable="page" prefix="pp. "/>
+      </group>
+
+      <!-- Software & datasets -->
+      <text variable="genre" prefix=" [" suffix="]"/>
+      <text variable="publisher"/>
+      <date variable="issued">
+        <date-part name="month" suffix=" "/>
+        <date-part name="day" suffix=", "/>
+        <date-part name="year"/>
+      </date>
+
+      <!-- URL, DOI -->
+      <text variable="DOI" prefix="&#10;https://doi.org/"/>
+      <text variable="URL" prefix="&#10;" suffix=""/>
+      <date variable="accessed" prefix=" (accessed " suffix=")">
+        <date-part name="day" suffix=" "/>
+        <date-part name="month" suffix=" "/>
+        <date-part name="year"/>
+      </date>
+    </layout>
+  </bibliography>
+</style>
